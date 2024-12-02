@@ -12,15 +12,15 @@ struct CityCardView: View {
     ZStack(alignment: .center){
       Image("bangkok-thailand")
         .resizable()
-        .scaledToFit()
         .clipShape(RoundedRectangle(cornerRadius: 16))
         .padding()
+        .frame(height: 220)
       
-//      Rectangle()
-//        .scaledToFit()
-//        .clipShape(RoundedRectangle(cornerRadius: 16))
-//        .opacity(0.25)
-//        .padding()
+      Rectangle()
+        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .opacity(0.25)
+        .padding()
+        .frame(height: 220)
       
       VStack{
         HStack{
