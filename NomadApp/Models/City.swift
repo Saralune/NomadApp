@@ -26,3 +26,4 @@ let buneosAires: City = City(imageName: "buenos-aires-argentina", name: "Buenos 
 let mexicoCity: City = City(imageName: "mexico-city-mexico", name: "Mexico City", country: "Mexico", rank: 5, temperature: 20, averageWeather: "sunny", wifi: 45, cost: 1812)
 let kualaLumpur: City = City(imageName: "kuala-lumpur-malaysia", name: "Kuala Lumpur", country: "Malaysia", rank: 6, temperature: 25, averageWeather: "rainy", wifi: 67, cost: 1329)
 let seoul: City = City(imageName: "seoul-south-korea", name: "Seoul", country: "South Korea", rank: 30, temperature: 10, averageWeather: "sunny", wifi: 52, cost: 2683)
+let cities = [bangkok, chiangMai, tokyo, buneosAires, mexicoCity, kualaLumpur, seoul]
