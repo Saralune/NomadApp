@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct CityCardView: View {
+  let city: City
+  
   var body: some View {
     ZStack(alignment: .center){
-      Image("bangkok-thailand")
+      Image(city.imageName)
         .resizable()
         .clipShape(RoundedRectangle(cornerRadius: 16))
         .padding()
@@ -24,7 +26,7 @@ struct CityCardView: View {
       
       VStack{
         HStack{
-          Text("1")
+          Text("\(city.rank)")
             .font(.system(size: 16))
           
           Spacer()
@@ -34,7 +36,7 @@ struct CityCardView: View {
               .font(.system(size: 16))
 
             VStack{
-              Text("86")
+              Text("\(city.wifi)")
                 .font(.system(size: 16))
               Text("Mbps")
                 .font(.system(size: 10))
@@ -46,7 +48,7 @@ struct CityCardView: View {
         Spacer()
           .frame(height: 30)
         
-        Text("Bangkok, Thailand")
+        Text("\(city.name), \(city.country)")
           .fontWeight(.bold)
           .font(.system(size: 22))
 
@@ -54,15 +56,16 @@ struct CityCardView: View {
           .frame(height: 30)
         
         HStack{
-          HStack{
-            Text("☀")
-            Text("20°C")
+          HStack{            
+            Text(getWeatherSymbol(averageWeather: city.averageWeather))
+            
+            Text("\(city.temperature)°C")
           }
           .font(.system(size: 16))
           
           Spacer()
           
-          Text("Coût")
+          Text("$\(city.cost) / mo")
             .font(.system(size: 16))
         }
         .padding()
@@ -74,8 +77,21 @@ struct CityCardView: View {
       .padding()
     } // ZStack
   }
+  
+  func getWeatherSymbol(averageWeather: String) -> String {
+    switch(averageWeather){
+    case "sunny":
+      return "☀️"
+    case "cloudy":
+      return "⛅️"
+    case "rainy":
+      return "🌧️"
+    default:
+      return "☀️"
+    }
+  }
 }
 
 #Preview {
-  CityCardView()
+  CityCardView(city: seoul)
 }
