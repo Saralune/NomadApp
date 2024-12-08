@@ -10,15 +10,21 @@ import SwiftUI
 struct ListCitiesView: View {
   var body: some View {
     NavigationStack {
-      ForEach(cities){ city in
-        NavigationLink {
-          CityDetailView()
-        } label: {
-          CityCardView(city: city)
+      ScrollView {
+        
+        ForEach(cities){ city in
+          NavigationLink {
+            CityDetailView(city: city)
+          } label: {
+            CityCardView(city: city)
+          }
         }
+        .listStyle(.plain)
+        .navigationTitle("Cities")
+        //        .sheet(isPresented: $isShowingAddPlantScreen) {
+        //          AddOrUpdatePlantView(myPlantCollection: $myPlantCollection, plant: newPlant, isCreation: isCreation)
+        //        }
       }
-      .listStyle(.plain)
-      .navigationTitle("Cities")
     }
   }
 }
