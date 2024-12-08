@@ -15,24 +15,13 @@ struct CityDetailView: View {
       // Détails
       VStack{
         // Average cost per month
-        HStack{
-          Text("Average Monthly Cost :")
-          
-          Spacer()
-          
-          Text("\(city.cost)")
-        }
-        .padding()
-        
+        TextCityDetailView(title: "Average Monthly Cost", text: "$ \(city.cost)", emoji: "💸")
+
         // Weather
-        HStack{
-          
-        }
+        TextCityDetailView(title: "Weather", text: "\(city.temperature)°C", emoji: getWeatherSymbol(averageWeather: city.averageWeather))
         
         // Wifi
-        HStack{
-          
-        }
+        TextCityDetailView(title: "Wifi", text: "\(city.wifi) Mbps", emoji: "🛜")
       }
       .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
     }

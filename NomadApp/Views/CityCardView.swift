@@ -77,19 +77,7 @@ struct CityCardView: View {
       .padding()
     } // ZStack
   }
-  
-  func getWeatherSymbol(averageWeather: String) -> String {
-    switch(averageWeather){
-    case "sunny":
-      return "☀️"
-    case "cloudy":
-      return "⛅️"
-    case "rainy":
-      return "🌧️"
-    default:
-      return "☀️"
-    }
-  }
+
 }
 
 #Preview {
