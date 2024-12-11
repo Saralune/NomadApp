@@ -9,6 +9,8 @@ import SwiftUI
 
 struct CityDetailView: View {
   var city: City
+  @State var rating: Int = 1
+  @State var review: String = "Write a review"
   
   var body: some View {
     ScrollView{
@@ -23,7 +25,43 @@ struct CityDetailView: View {
         // Wifi
         TextCityDetailView(title: "Wifi", text: "\(city.wifi) Mbps", emoji: "🛜")
       }
-      .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+//      .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+      Divider()
+      
+      VStack(alignment: .leading){
+        Text("Reviews :")
+          .font(.title3)
+          .bold()
+        
+        TextEditor(text: $review)
+          .frame(minHeight: 100, alignment: .leading)
+          .font(.custom("HelveticaNeue", size: 13))
+          .border(Color.gray, width: 1)
+          .foregroundColor(Color.gray)
+          .clipShape(RoundedRectangle(cornerRadius: 10))
+          .overlay(RoundedRectangle(cornerRadius: 10).strokeBorder(Color.gray, lineWidth: 1))
+          .padding(.bottom)
+
+
+        HStack{
+          RatingView(rating: $rating)
+          
+          Spacer()
+          
+          Button(action: {
+              // What to perform
+          }) {
+            Text("Post review")
+              .padding()
+              .bold()
+              .font(.system(size: 14))
+              .background(Color(red: 0.999, green: 0.276, blue: 0.257))
+              .foregroundColor(.white)
+              .clipShape(RoundedRectangle(cornerRadius: 10))
+          }
+        }
+      }
+      .padding()
     }
     .safeAreaInset(edge: .top){
       Image("\(city.imageName)")

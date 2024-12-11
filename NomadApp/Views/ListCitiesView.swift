@@ -26,6 +26,7 @@ struct ListCitiesView: View {
         //        }
       }
     }
+    //TODO : Bouton de retour en blanc
   }
 }
 
