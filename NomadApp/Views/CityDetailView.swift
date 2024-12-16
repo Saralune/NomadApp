@@ -11,6 +11,7 @@ struct CityDetailView: View {
   var city: City
   @State var rating: Int = 1
   @State var review: String = "Write a review"
+  @State var listReview: [Review] = []
   
   var body: some View {
     ScrollView{
@@ -25,9 +26,10 @@ struct CityDetailView: View {
         // Wifi
         TextCityDetailView(title: "Wifi", text: "\(city.wifi) Mbps", emoji: "🛜")
       }
-//      .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+
       Divider()
       
+      // Review form
       VStack(alignment: .leading){
         Text("Reviews :")
           .font(.title3)
@@ -49,7 +51,7 @@ struct CityDetailView: View {
           Spacer()
           
           Button(action: {
-              // What to perform
+            postReview(review: review, rating: rating)
           }) {
             Text("Post review")
               .padding()
@@ -62,8 +64,27 @@ struct CityDetailView: View {
         }
       }
       .padding()
+      
+      // Review wrote
+      ForEach(Array(listReview)) {review in
+        HStack(alignment: .top){
+          Text("\(review.description)")
+          
+          Spacer()
+          
+          VStack{
+            Image(systemName: "star.fill")
+              .foregroundStyle(Color.yellow)
+              .padding(.bottom, 1)
+            
+            Text(" \(review.rating)/5")
+          }
+        }
+        .padding()
+      }
+      
     }
-    .safeAreaInset(edge: .top){
+    .safeAreaInset(edge: .top){ // Image on top of screen
       Image("\(city.imageName)")
         .resizable()
         .scaledToFit()
@@ -83,6 +104,13 @@ struct CityDetailView: View {
 
     
     
+  }
+  
+  func postReview(review: String, rating: Int){
+    let newReview: Review = Review(description: review, rating: rating)
+    listReview.append(newReview)
+    self.review = ""
+    self.rating = 0
   }
 }
 
